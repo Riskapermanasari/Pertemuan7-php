@@ -1,0 +1,119 @@
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 25px 12px;
+    background: #bacce0;
+    font-family: Arial, sans-serif;
+    color: #0a1b52;
+    font-size: 13px;
+}
+
+.container {
+    max-width: 850px;
+    margin: 20px auto;
+    padding: 22px;
+    background: rgb(252, 247, 247);
+    border: 1px solid #051855;
+    border-radius: 10px;
+    box-shadow: 0 3px 12px #0830641c;
+}
+
+.detail,
+.form {
+    max-width: 520px;
+}
+
+h2 {
+    margin: 0 0 7px;
+    color: #141569;
+    font-size: 21px;
+}
+
+.keterangan {
+    color: #967f8b;
+    font-size: 11px;
+    margin-bottom: 20px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 15px 0 20px;
+}
+
+th {
+    background: #99c1e2;
+    color: #0a1846;
+}
+
+th, td {
+    padding: 10px 7px;
+    text-align: left;
+    border-bottom: 1px solid #f4e1eb;
+}
+
+.status {
+    background: #d9f5df;
+    color: #278044;
+    padding: 4px 8px;
+    border-radius: 5px;
+}
+
+.tombol {
+    display: inline-block;
+    border: none;
+    border-radius: 5px;
+    background: #0d32ad;
+    color: rgb(221, 221, 224);
+    padding: 8px 12px;
+    margin: 4px 2px;
+    text-decoration: none;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+.reset {
+    background: #920d0d;
+    color: #fdfeff;
+}
+
+label {
+    display: block;
+    margin: 12px 0 5px;
+    font-weight: bold;
+}
+
+input, textarea {
+    width: 100%;
+    padding: 9px;
+    border: 1px solid #d8c9d1;
+    border-radius: 5px;
+    font: inherit;
+}
+
+textarea {
+    resize: vertical;
+}
+
+form .tombol {
+    margin-top: 12px;
+}
+
+a:not(.tombol) {
+    color: #700909;
+}
+
+@media (max-width: 650px) {
+    .container {
+        padding: 14px;
+        overflow-x: auto;
+    }
+
+    table {
+        min-width: 650px;
+    }
+}
