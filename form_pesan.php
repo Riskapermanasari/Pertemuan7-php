@@ -9,26 +9,29 @@
 </head>
 <body>
 
-<div class="container form">
-    <h2>Form Pesan</h2>
-    <p class="keterangan">Silakan isi formulir untuk mengirim pesan.</p>
+<div class="container">
+    <h2>Form Pesan dan Kesan</h2>
 
     <form action="proses_pesan.php" method="POST">
-        <label>Nama:</label>
-        <input type="text" name="nama" required>
+        <label for="nama">Nama:</label>
+        <input type="text" id="nama" name="nama" required>
 
-        <label>Pesan:</label>
-        <textarea name="pesan" rows="4" required></textarea>
+        <label for="kelas">Kelas:</label>
+        <input type="text" id="kelas" name="kelas" required>
 
-        <button type="submit" class="tombol">Kirim</button>
+        <label for="pesan">Pesan/Kesan:</label>
+        <textarea id="pesan" name="pesan" required></textarea>
+
+        <button type="submit">Kirim</button>
+        <a class="tombol" href="index.php">Kembali</a>
     </form>
-
-    <br>
-    <p><a href="index.php" class="tombol">Kembali ke Daftar Nilai</a></p>
 </div>
 
 </body>
 </html>
+
+
+
 
 
 

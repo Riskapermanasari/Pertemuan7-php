@@ -1,9 +1,41 @@
 
 <?php
 $mahasiswa = [
-    ["nim" => "23001", "nama" => "Siti Lala", "jurusan" => "Sistem Informasi", "nilai" => 85],
-    ["nim" => "23002", "nama" => "Farel Pratama", "jurusan" => "Sistem Informasi", "nilai" => 90],
-    ["nim" => "23003", "nama" => "Zamzam", "jurusan" => "Informatika", "nilai" => 78]
+    [
+        "nim" => "231001",
+        "nama" => "Alya Putri",
+        "jurusan" => "Sistem Informasi",
+        "email" => "alya@gmail.com",
+        "nilai" => 85
+    ],
+    [
+        "nim" => "231002",
+        "nama" => "Bima Pratama",
+        "jurusan" => "Informatika",
+        "email" => "bima@gmail.com",
+        "nilai" => 75
+    ],
+    [
+        "nim" => "231003",
+        "nama" => "Citra Maharani",
+        "jurusan" => "Sistem Informasi",
+        "email" => "citra@gmail.com",
+        "nilai" => 90
+    ],
+    [
+        "nim" => "231004",
+        "nama" => "Dafa Ramadhan",
+        "jurusan" => "Informatika",
+        "email" => "dafa@gmail.com",
+        "nilai" => 65
+    ],
+    [
+        "nim" => "231005",
+        "nama" => "Nadia Safitri",
+        "jurusan" => "Sistem Informasi",
+        "email" => "nadia@gmail.com",
+        "nilai" => 55
+    ]
 ];
 ?>
 
@@ -12,14 +44,13 @@ $mahasiswa = [
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Daftar Nilai Mahasiswa</title>
+    <title>Data Mahasiswa</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <div class="container">
     <h2>Daftar Nilai Mahasiswa</h2>
-    <p class="keterangan">Data mahasiswa dan nilai perkuliahan.</p>
 
     <table>
         <tr>
@@ -28,34 +59,54 @@ $mahasiswa = [
             <th>Nama</th>
             <th>Jurusan</th>
             <th>Nilai</th>
+            <th>Grade</th>
             <th>Status</th>
             <th>Detail</th>
         </tr>
 
         <?php
-        for ($i = 0; $i < count($mahasiswa); $i++) {
-            echo "<tr>";
-            echo "<td>" . ($i + 1) . "</td>";
-            echo "<td>" . $mahasiswa[$i]["nim"] . "</td>";
-            echo "<td>" . $mahasiswa[$i]["nama"] . "</td>";
-            echo "<td>" . $mahasiswa[$i]["jurusan"] . "</td>";
-            echo "<td>" . $mahasiswa[$i]["nilai"] . "</td>";
+        $no = 1;
 
-            if ($mahasiswa[$i]["nilai"] >= 70) {
-                echo "<td>Lulus</td>";
+        foreach ($mahasiswa as $data) {
+            if ($data["nilai"] >= 80) {
+                $grade = "A";
+            } elseif ($data["nilai"] >= 70) {
+                $grade = "B";
+            } elseif ($data["nilai"] >= 60) {
+                $grade = "C";
             } else {
-                echo "<td>Tidak Lulus</td>";
+                $grade = "D";
             }
 
-            echo "<td><a class='tombol' href='detail.php?nim=" . $mahasiswa[$i]["nim"] . "'>Detail</a></td>";
-            echo "</tr>";
-        }
+            $status = ($data["nilai"] >= 70)
+                ? "Lulus"
+                : "Tidak Lulus";
         ?>
+
+        <tr>
+            <td><?= $no++ ?></td>
+            <td><?= htmlspecialchars($data["nim"]) ?></td>
+            <td><?= htmlspecialchars($data["nama"]) ?></td>
+            <td><?= htmlspecialchars($data["jurusan"]) ?></td>
+            <td><?= $data["nilai"] ?></td>
+            <td><?= $grade ?></td>
+            <td><?= $status ?></td>
+            <td>
+                <a class="detail"
+                   href="detail.php?nim=<?= urlencode($data['nim']) ?>&nama=<?= urlencode($data['nama']) ?>&jurusan=<?= urlencode($data['jurusan']) ?>&email=<?= urlencode($data['email']) ?>&nilai=<?= $data['nilai'] ?>">
+                    Detail
+                </a>
+            </td>
+        </tr>
+
+        <?php } ?>
     </table>
 
-    <br>
-    <a class="tombol" href="form_pesan.php">Form Pesan</a>
+    <p>
+        <a class="tombol" href="form_pesan.php">Form Pesan</a>
+    </p>
 </div>
 
 </body>
 </html>
+

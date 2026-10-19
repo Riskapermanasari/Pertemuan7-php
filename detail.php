@@ -1,24 +1,33 @@
 
 <?php
-$nim = $_GET["nim"];
-
-$mahasiswa = [
-    ["nim" => "23001", "nama" => "Siti Lala", "jurusan" => "Sistem Informasi", "nilai" => 85],
-    ["nim" => "23002", "nama" => "Farel Pratama", "jurusan" => "Sistem Informasi", "nilai" => 90],
-    ["nim" => "23003", "nama" => "Zamzam", "jurusan" => "Informatika", "nilai" => 78]
-];
-
-$nama = "";
-$jurusan = "";
-$nilai = 0;
-
-for ($i = 0; $i < count($mahasiswa); $i++) {
-    if ($mahasiswa[$i]["nim"] == $nim) {
-        $nama = $mahasiswa[$i]["nama"];
-        $jurusan = $mahasiswa[$i]["jurusan"];
-        $nilai = $mahasiswa[$i]["nilai"];
-    }
+if (
+    !isset($_GET["nim"]) ||
+    !isset($_GET["nama"]) ||
+    !isset($_GET["jurusan"]) ||
+    !isset($_GET["email"]) ||
+    !isset($_GET["nilai"])
+) {
+    header("Location: index.php");
+    exit;
 }
+
+$nim = $_GET["nim"];
+$nama = $_GET["nama"];
+$jurusan = $_GET["jurusan"];
+$email = $_GET["email"];
+$nilai = (int) $_GET["nilai"];
+
+if ($nilai >= 80) {
+    $grade = "A";
+} elseif ($nilai >= 70) {
+    $grade = "B";
+} elseif ($nilai >= 60) {
+    $grade = "C";
+} else {
+    $grade = "D";
+}
+
+$status = ($nilai >= 70) ? "Lulus" : "Tidak Lulus";
 ?>
 
 <!DOCTYPE html>
@@ -31,25 +40,25 @@ for ($i = 0; $i < count($mahasiswa); $i++) {
 </head>
 <body>
 
-<div class="container detail">
+
+<div class="container">
     <h2>Detail Mahasiswa</h2>
 
-    <?php
-    echo "<p>NIM: " . $nim . "</p>";
-    echo "<p>Nama: " . $nama . "</p>";
-    echo "<p>Jurusan: " . $jurusan . "</p>";
-    echo "<p>Nilai: " . $nilai . "</p>";
-
-    if ($nilai >= 70) {
-        echo "<p>Status: Lulus</p>";
-    } else {
-        echo "<p>Status: Tidak Lulus</p>";
-    }
-    ?>
+    <p><strong>NIM:</strong> <?= htmlspecialchars($nim) ?></p>
+    <p><strong>Nama:</strong> <?= htmlspecialchars($nama) ?></p>
+    <p><strong>Jurusan:</strong> <?= htmlspecialchars($jurusan) ?></p>
+    <p><strong>Email:</strong> <?= htmlspecialchars($email) ?></p>
+    <p><strong>Nilai:</strong> <?= $nilai ?></p>
+    <p><strong>Grade:</strong> <?= $grade ?></p>
+    <p><strong>Status:</strong> <?= $status ?></p>
 
     <a class="tombol" href="index.php">Kembali</a>
+</div>
+</body>
+</html>
 </div>
 
 </body>
 </html>
+
 
