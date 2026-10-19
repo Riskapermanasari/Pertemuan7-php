@@ -1,41 +1,12 @@
+
 <?php
 $mahasiswa = [
-    [
-        "nim" => "23001",
-        "nama" => "Siti Lala",
-        "jurusan" => "Sistem Informasi",
-        "nilai" => 85
-    ],
-    [
-        "nim" => "23002",
-        "nama" => "Farel Pratama",
-        "jurusan" => "Sistem Informasi",
-        "nilai" => 90
-    ],
-    [
-        "nim" => "23003",
-        "nama" => "Zamzam",
-        "jurusan" => "Informatika",
-        "nilai" => 78
-    ],
-    [
-        "nim" => "23004",
-        "nama" => "Alya Putri",
-        "jurusan" => "Informatika",
-        "nilai" => 88
-    ],
-    [
-        "nim" => "23005",
-        "nama" => "Budi Maulana",
-        "jurusan" => "Sistem Informasi",
-        "nilai" => 82
-    ]
+    ["nim" => "23001", "nama" => "Siti Lala", "jurusan" => "Sistem Informasi", "nilai" => 85],
+    ["nim" => "23002", "nama" => "Farel Pratama", "jurusan" => "Sistem Informasi", "nilai" => 90],
+    ["nim" => "23003", "nama" => "Zamzam", "jurusan" => "Informatika", "nilai" => 78]
 ];
-
-function e($data) {
-    return htmlspecialchars((string)$data, ENT_QUOTES, 'UTF-8');
-}
 ?>
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -45,6 +16,7 @@ function e($data) {
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
 <div class="container">
     <h2>Daftar Nilai Mahasiswa</h2>
     <p class="keterangan">Data mahasiswa dan nilai perkuliahan.</p>
@@ -60,28 +32,30 @@ function e($data) {
             <th>Detail</th>
         </tr>
 
-        <?php foreach ($mahasiswa as $i => $data): ?>
-        <tr>
-            <td><?= $i + 1 ?></td>
-            <td><?= e($data["nim"]) ?></td>
-            <td><?= e($data["nama"]) ?></td>
-            <td><?= e($data["jurusan"]) ?></td>
-            <td><?= e($data["nilai"]) ?></td>
-            <td>
-                <span class="status">
-                    <?= $data["nilai"] >= 70 ? "Lulus" : "Tidak Lulus" ?>
-                </span>
-            </td>
-            <td>
-                <a class="tombol" href="detail.php?nim=<?= urlencode($data["nim"]) ?>">Detail</a>
-            </td>
-        </tr>
-        <?php endforeach; ?>
+        <?php
+        for ($i = 0; $i < count($mahasiswa); $i++) {
+            echo "<tr>";
+            echo "<td>" . ($i + 1) . "</td>";
+            echo "<td>" . $mahasiswa[$i]["nim"] . "</td>";
+            echo "<td>" . $mahasiswa[$i]["nama"] . "</td>";
+            echo "<td>" . $mahasiswa[$i]["jurusan"] . "</td>";
+            echo "<td>" . $mahasiswa[$i]["nilai"] . "</td>";
+
+            if ($mahasiswa[$i]["nilai"] >= 70) {
+                echo "<td>Lulus</td>";
+            } else {
+                echo "<td>Tidak Lulus</td>";
+            }
+
+            echo "<td><a class='tombol' href='detail.php?nim=" . $mahasiswa[$i]["nim"] . "'>Detail</a></td>";
+            echo "</tr>";
+        }
+        ?>
     </table>
 
-    <div style="margin-top: 20px;">
-        <a class="tombol" href="form_pesan.php">Form Pesan</a>
-    </div>
+    <br>
+    <a class="tombol" href="form_pesan.php">Form Pesan</a>
 </div>
+
 </body>
 </html>
